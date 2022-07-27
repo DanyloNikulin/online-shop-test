@@ -1,0 +1,21 @@
+<div id="overlay">
+	<div id="wrapper">
+		<div id="header"> test header </div>
+		<div id="contect">
+			<select formControlName="SizeOptions" #sizeOption (change)='onSizeChange(sizeOption.value)'>
+				<option selected disabled></option>
+				<option *ngFor="let qty of getSizeOptions()">{{qty}}</option>
+			</select>
+			<div *ngIf="sizeOption.value">
+				<select formControlName="ColorOptions" #colorOption (change)='onColorChange(colorOption.value)'>
+					<option selected disabled></option>
+					<option *ngFor="let qty of getColorOptions(sizeOption.value)">{{qty}}</option>
+				</select>
+			</div>
+		</div>
+		<div id="actions">
+			<button class="cancel" (click)="close()">No</button>
+			<button (click)="close()">Yes</button>
+		</div>
+	</div>
+</div>

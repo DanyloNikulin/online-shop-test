@@ -1,0 +1,129 @@
+<app-edit-modalbox *ngIf="cartService.showDialog"></app-edit-modalbox>
+<div class="row">
+	<div class="col-md-9">
+		<div class="row">
+			<div class="row">
+				<a routerLink="**" routerLinkActive="active">&lt;continue shopping</a>
+			</div>
+			<div class="row">
+				<div class="col-8">
+					<div class="Header">
+						Your shopping Bag
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="row">
+						<div class="col-8">
+							<div style="display:inline-block;width: 100%; text-align: end;">
+								<h6 style="font-size: 12px;font-weight: lighter; margin-bottom: 0;">Prefere to shop in our boutiques?</h6>
+								<h6 style="font-size: 15px; font-weight: normal; margin-bottom: 0;">Take this list with you!</h6>
+							</div>
+						</div>
+						<div class="col-4" style="border-left:1px solid rgb(152, 152, 152);">
+							<div style="display:inline-block;">
+								<div style="display:block;">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-envelope" viewBox="0 0 16 16">
+										<path
+											d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+									</svg>
+									EMAIL
+								</div>
+								<div style="display:block;">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-printer" viewBox="0 0 16 16">
+										<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+										<path
+											d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+									</svg>
+									PRINT
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="font-size: 15px;
+		color: gray; margin-top:30px">
+			<div class="col-8">
+				Item
+			</div>
+			<div class="col">
+				Price
+			</div>
+			<div class="col">
+				Quantity
+			</div>
+			<div class="col">
+				Total
+			</div>
+		</div>
+		<hr style="margin-bottom: -3px;">
+	</div>
+	<div class="col align-self-end">
+		<div style="display:float;">
+			<button class="float-end CheckoutButton">Checkout</button>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-9">
+		<div class="container-sm">
+			<div class="OrderItemDiv row" *ngFor="let item of products; index as i">
+				<div class="col-3">
+					<img [src]="item.imageUrl" alt={{item.name}} height="250" />
+				</div>
+				<div class="col-5 ">
+					<div class="row h-100">
+						<div class="col-md-12">
+							<h2>{{item.name}}</h2>
+						</div>
+						<div class="col-1 col-md-1 OrderItemColDiv h-100">
+							<h6 style="color: grey;">Style:</h6>
+							<h6 style="color: grey;">SKU:</h6>
+							<h6 style="color: grey;">Color:</h6>
+							<h6 style="color: grey;">Size:</h6>
+							<button class="OrderItemButton BorderlessButton" (click)="editItem(item)">Edit</button>
+						</div>
+						<div class="col-1 col-md-1 OrderItemColDiv h-100">
+							<h6>{{item.style}}</h6>
+							<h6>{{item.sku}}</h6>
+							<h6>{{item.color}}</h6>
+							<h6>{{item.size}}</h6>
+							<button class="OrderItemButton BorderlessButton" (click)="removeItem(item)">Remove</button>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<h3>{{item.price | currency}} </h3>
+				</div>
+				<div class="col">
+					<select formControlName="qtyOption" #qtyOption (change)='onQuantityChange(qtyOption.value, item)'>
+						<option *ngFor="let qty of qtyOptions">{{qty}}</option>
+					</select>
+				</div>
+				<div class="col">
+					<h3>{{getTotalSum(item.id) | currency}} </h3>
+				</div>
+				<hr style="margin-top: 20px;">
+			</div>
+			<div class="col align-self-end">
+				<div style="display:float;">
+					<button class="float-end CheckoutButton">Checkout</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="row">
+			<app-order-summary></app-order-summary>
+		</div>
+		<div class="row">
+			<app-cart-advertisement></app-cart-advertisement>
+		</div>
+		<div class="row">
+			<app-cart-help></app-cart-help>
+		</div>
+	</div>
+</div>

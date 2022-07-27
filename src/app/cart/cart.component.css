@@ -1,0 +1,39 @@
+.OrderItemDiv{
+    margin: 20px 0 15px 0;
+}
+select {
+    width: 50%;
+}
+.OrderItemColDiv{
+    margin-right: 15px;
+    position: relative;
+}
+.BorderlessButton{
+    text-decoration: underline;
+    border: 0;
+    background-color: transparent;
+}
+.OrderItemButton{
+    position: absolute;
+    bottom: 50px;
+    left: 0px;
+}
+.Header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
+    font-size: 30px;
+    font-weight: normal;
+    color: #333;
+    font-family:'Courier New', Courier, monospace
+}
+.CheckoutButton{
+    border: 0;
+    border-radius: 0;
+    padding: 5px 80px;
+    font-size: 14px;
+    background-color: rgb(176,62,66);
+    color: #fff;
+    margin-bottom: 20px
+}

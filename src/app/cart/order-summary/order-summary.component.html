@@ -1,0 +1,48 @@
+<div class="container-sm">
+	<div class="row">
+		<div class="col">
+			<div class="row border">
+				<div class="OrderItemDiv col">
+					<div class="row">
+						<div class="Header">
+							Order Summary
+						</div>
+						<div class="col-md-10">
+							Item Subtotal
+						</div>
+						<div class="col-2">
+							{{this.cartService.getGrandTotalPrice() | currency}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row border">
+				<div class="OrderItemDiv col">
+					<div class="row">
+						<div class="col-md-12">
+							Estimation total (Befor tax)
+						</div>
+						<div class="col offset-md-10">
+							{{this.cartService.getGrandTotalPrice() | currency}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row border">
+				<div class="OrderItemDiv col">
+					<div class="row">
+						<div class="col-7">
+							<label for="inputPromocode" class="col-form-label">Promotional code</label>
+						</div>
+						<div class="col-6">
+							<input type="password" id="inputPromocode" class="form-control">
+						</div>
+						<div class="col-6">
+							<button class="btn btn-outline-secondary" id="PromocodeButton">APPLY</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
